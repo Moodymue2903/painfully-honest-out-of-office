@@ -44,6 +44,10 @@ def find_problems(line):
         problems.append("not exactly one sentence")
     if "\n" in line or "\r" in line:
         problems.append("contains a line break")
+    if line != line.strip():
+        problems.append("leading or trailing whitespace")
+    if not line.isascii():
+        problems.append("non-ASCII characters (ASCII preferred for the gate)")
     try:
         line.encode("utf-8")
     except UnicodeEncodeError:
